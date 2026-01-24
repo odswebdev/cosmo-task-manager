@@ -1,0 +1,442 @@
+  * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        :root {
+            --space-dark: #0b0d21;
+            --space-blue: #1a1f3c;
+            --neon-blue: #00f3ff;
+            --neon-purple: #b967ff;
+            --star-yellow: #ffeb3b;
+            --planet-orange: #ff9800;
+            --text-light: #e6f7ff;
+        }
+
+        body {
+            background: var(--space-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+                radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+                radial-gradient(2px 2px at 50px 160px, #ddd, transparent),
+                radial-gradient(2px 2px at 90px 40px, #fff, transparent),
+                radial-gradient(2px 2px at 130px 80px, #fff, transparent),
+                radial-gradient(2px 2px at 160px 120px, #ddd, transparent);
+            background-size: 300px 300px;
+            animation: starsMove 100s linear infinite;
+        }
+
+        @keyframes starsMove {
+            from { background-position: 0 0; }
+            to { background-position: 300px 300px; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .title {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0c8ff;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .panel {
+            background: rgba(26, 31, 60, 0.85);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .panel:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 243, 255, 0.2);
+        }
+
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .panel:hover::before {
+            left: 100%;
+        }
+
+        .tasks-panel {
+            flex: 3;
+            min-width: 300px;
+        }
+
+        .stats-panel {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .panel-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--neon-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid rgba(0, 243, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .panel-title i {
+            font-size: 1.5rem;
+        }
+
+        .add-task-form {
+            display: flex;
+            margin-bottom: 25px;
+            gap: 10px;
+        }
+
+        .task-input {
+            flex: 1;
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid rgba(0, 243, 255, 0.3);
+            background: rgba(0, 10, 20, 0.6);
+            color: var(--text-light);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .task-input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+        }
+
+        .add-btn {
+            padding: 15px 25px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            border: none;
+            border-radius: 12px;
+            color: var(--space-dark);
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.7);
+        }
+
+        .task-list {
+            list-style: none;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .task-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .task-list::-webkit-scrollbar-track {
+            background: rgba(0, 10, 20, 0.3);
+            border-radius: 10px;
+        }
+
+        .task-list::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--neon-blue), var(--neon-purple));
+            border-radius: 10px;
+        }
+
+        .task-item {
+            background: rgba(0, 20, 40, 0.5);
+            margin-bottom: 15px;
+            padding: 18px;
+            border-radius: 15px;
+            border-left: 5px solid var(--neon-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .task-item:hover {
+            background: rgba(0, 30, 60, 0.6);
+            transform: translateX(5px);
+        }
+
+        .task-item.completed {
+            opacity: 0.7;
+            border-left-color: var(--planet-orange);
+        }
+
+        .task-text {
+            flex: 1;
+            font-size: 1.1rem;
+            word-break: break-word;
+            padding-right: 10px;
+        }
+
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+            color: #aaa;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .task-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .complete-btn {
+            background: rgba(0, 200, 100, 0.2);
+            color: #00ff88;
+        }
+
+        .complete-btn:hover {
+            background: rgba(0, 200, 100, 0.4);
+            transform: rotate(15deg);
+        }
+
+        .delete-btn {
+            background: rgba(255, 50, 50, 0.2);
+            color: #ff5555;
+        }
+
+        .delete-btn:hover {
+            background: rgba(255, 50, 50, 0.4);
+            transform: rotate(15deg);
+        }
+
+        .stats-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .stat-box {
+            background: rgba(0, 15, 30, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(185, 103, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .stat-box:hover {
+            transform: scale(1.05);
+            border-color: rgba(185, 103, 255, 0.5);
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #a0c8ff;
+        }
+
+        .planet-animation {
+            height: 150px;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .planet {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, var(--planet-orange), #ff5722);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 30px rgba(255, 152, 0, 0.7);
+            animation: planetRotate 20s linear infinite;
+        }
+
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px dashed rgba(0, 243, 255, 0.5);
+            border-radius: 50%;
+        }
+
+        .orbit-1 {
+            width: 120px;
+            height: 120px;
+            animation: orbitRotate 15s linear infinite;
+        }
+
+        .orbit-2 {
+            width: 180px;
+            height: 180px;
+            animation: orbitRotate 25s linear infinite reverse;
+        }
+
+        .satellite {
+            width: 20px;
+            height: 20px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        @keyframes planetRotate {
+            from { transform: translate(-50%, -50%) rotate(0); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes orbitRotate {
+            from { transform: translate(-50%, -50%) rotate(0); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #88aaff;
+            font-size: 1.2rem;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--neon-purple);
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            color: #88aaff;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 243, 255, 0.2);
+        }
+
+        .task-count {
+            display: inline-block;
+            background: rgba(0, 243, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 0 10px;
+        }
+
+        .pulse {
+            animation: pulseEffect 2s infinite;
+        }
+
+        @keyframes pulseEffect {
+            0% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 243, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0); }
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: rgba(26, 31, 60, 0.95);
+            border-radius: 12px;
+            border-left: 5px solid var(--neon-blue);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transform: translateX(150%);
+            transition: transform 0.5s ease;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .title {
+                font-size: 2.5rem;
+            }
+        }

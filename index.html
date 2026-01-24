@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Космический органайзер</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="title"><i class="fas fa-rocket"></i> Космический органайзер</h1>
+            <p class="subtitle">Управляйте своими задачами в стиле космического пространства</p>
+        </header>
+
+        <div class="main-content">
+            <div class="panel tasks-panel">
+                <h2 class="panel-title"><i class="fas fa-tasks"></i> Задачи</h2>
+                
+                <form class="add-task-form" id="taskForm">
+                    <input type="text" class="task-input" id="taskInput" placeholder="Введите новую задачу..." autocomplete="off">
+                    <button type="submit" class="add-btn pulse" id="addBtn">
+                        <i class="fas fa-plus"></i> Добавить
+                    </button>
+                </form>
+                
+                <ul class="task-list" id="taskList">
+                    <!-- Задачи будут добавляться сюда -->
+                </ul>
+            </div>
+            
+            <div class="panel stats-panel">
+                <h2 class="panel-title"><i class="fas fa-chart-line"></i> Статистика</h2>
+                
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <div class="stat-value" id="totalTasks">0</div>
+                        <div class="stat-label">Всего задач</div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-value" id="completedTasks">0</div>
+                        <div class="stat-label">Выполнено</div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-value" id="pendingTasks">0</div>
+                        <div class="stat-label">Осталось</div>
+                    </div>
+                </div>
+                
+                <div class="planet-animation">
+                    <div class="planet"></div>
+                    <div class="orbit orbit-1">
+                        <div class="satellite"></div>
+                    </div>
+                    <div class="orbit orbit-2">
+                        <div class="satellite"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Космический органайзер &copy; 2026 | Задачи выполнены: <span class="task-count" id="footerCompleted">0</span> из <span class="task-count" id="footerTotal">0</span></p>
+        </footer>
+    </div>
+    
+    <div class="notification" id="notification">
+        <span id="notificationText">Задача добавлена!</span>
+    </div>
+
+        <script src="js/main.js"></script>
+</body>
+</html>
